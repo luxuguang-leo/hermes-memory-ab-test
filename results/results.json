@@ -1,0 +1,298 @@
+     1|{
+     2|  "mh1": {
+     3|    "case": {
+     4|      "id": "mh1",
+     5|      "name": "两跳：人物关系 + 事件",
+     6|      "question": "Nate这个周末要参加什么活动？",
+     7|      "answer": "电竞比赛",
+     8|      "category": "entity_relation"
+     9|    },
+    10|    "improved": {
+    11|      "strategy": "Improved (EntityIdx + TwoStage)",
+    12|      "answer": "Nate正在准备并参加一个电竞比赛。",
+    13|      "calls": 1,
+    14|      "elapsed_s": 7.4,
+    15|      "query_entities": [
+    16|        "Nate",
+    17|        "参加",
+    18|        "活动"
+    19|      ],
+    20|      "stage1_turns": 9,
+    21|      "stage2_new_turns": 0,
+    22|      "total_evidence": 4,
+    23|      "judge": {
+    24|        "score": "CORRECT",
+    25|        "reason": "The prediction contains the exact key information '电竞比赛' specified in the ground truth."
+    26|      }
+    27|    }
+    28|  },
+    29|  "mh2": {
+    30|    "case": {
+    31|      "id": "mh2",
+    32|      "name": "两跳：间接关系",
+    33|      "question": "用户做咖啡拉花遇到的具体问题是什么？",
+    34|      "answer": "牛奶打发总是失败",
+    35|      "category": "issue_diagnosis"
+    36|    },
+    37|    "improved": {
+    38|      "strategy": "Improved (EntityIdx + TwoStage)",
+    39|      "answer": "用户遇到的具体问题是：牛奶打发总是失败。",
+    40|      "calls": 1,
+    41|      "elapsed_s": 6.0,
+    42|      "query_entities": [
+    43|        "问题",
+    44|        "具体",
+    45|        "用户",
+    46|        "拉花",
+    47|        "咖啡",
+    48|        "遇到"
+    49|      ],
+    50|      "stage1_turns": 7,
+    51|      "stage2_new_turns": 0,
+    52|      "total_evidence": 4,
+    53|      "judge": {
+    54|        "score": "CORRECT",
+    55|        "reason": "The prediction captures the exact content of the ground truth without adding any conflicting information."
+    56|      }
+    57|    }
+    58|  },
+    59|  "mh3": {
+    60|    "case": {
+    61|      "id": "mh3",
+    62|      "name": "三跳：多步关联",
+    63|      "question": "接替张老师量子力学课的陈教授，他的研究方向和最近的代表性成果是什么？",
+    64|      "answer": "量子计算，拓扑量子纠错，去年发了Nature Physics",
+    65|      "category": "multi_step"
+    66|    },
+    67|    "improved": {
+    68|      "strategy": "Improved (EntityIdx + TwoStage)",
+    69|      "answer": "对话中未提及陈教授的研究方向和具体的代表性成果。",
+    70|      "calls": 1,
+    71|      "elapsed_s": 7.6,
+    72|      "query_entities": [
+    73|        "教授",
+    74|        "代表性",
+    75|        "成果",
+    76|        "方向",
+    77|        "接替",
+    78|        "张老师",
+    79|        "研究",
+    80|        "量子力学"
+    81|      ],
+    82|      "stage1_turns": 8,
+    83|      "stage2_new_turns": 0,
+    84|      "total_evidence": 4,
+    85|      "judge": {
+    86|        "score": "WRONG",
+    87|        "reason": "The ground truth provides specific details about the research direction (quantum computing, topological error correction) and accomplishments (Nature Physics publication), whereas the prediction claims these details were not mentioned."
+    88|      }
+    89|    }
+    90|  },
+    91|  "mh4": {
+    92|    "case": {
+    93|      "id": "mh4",
+    94|      "name": "否定排除推理",
+    95|      "question": "团建最后没有选择漂流的原因是什么？",
+    96|      "answer": "因为漂流被认为太危险，上次有人受伤。",
+    97|      "category": "negation_reasoning"
+    98|    },
+    99|    "improved": {
+   100|      "strategy": "Improved (EntityIdx + TwoStage)",
+   101|      "answer": "因为漂流被认为太危险，且上次有人受伤。",
+   102|      "calls": 1,
+   103|      "elapsed_s": 8.7,
+   104|      "query_entities": [
+   105|        "漂流",
+   106|        "团建",
+   107|        "没有",
+   108|        "选择",
+   109|        "原因"
+   110|      ],
+   111|      "stage1_turns": 3,
+   112|      "stage2_new_turns": 0,
+   113|      "total_evidence": 3,
+   114|      "judge": {
+   115|        "score": "CORRECT",
+   116|        "reason": "The prediction contains all the essential information from the ground truth (rafting being dangerous and someone getting injured last time). The addition of '且' is a stylistic conjunction that does not change the meaning."
+   117|      }
+   118|    }
+   119|  },
+   120|  "tm1": {
+   121|    "case": {
+   122|      "id": "tm1",
+   123|      "name": "事件排序",
+   124|      "question": "用户停止跑步开始游泳的原因是什么？",
+   125|      "answer": "因为跑步姿势不对导致膝盖疼，医生建议后转为游泳",
+   126|      "category": "temporal_causal"
+   127|    },
+   128|    "improved": {
+   129|      "strategy": "Improved (EntityIdx + TwoStage)",
+   130|      "answer": "对话中并未提及用户“开始游泳”的细节，但提到用户**因为膝盖疼痛（由于跑步姿势不对）**而去看了医生。",
+   131|      "calls": 1,
+   132|      "elapsed_s": 25.5,
+   133|      "query_entities": [
+   134|        "游泳",
+   135|        "跑步",
+   136|        "用户",
+   137|        "原因",
+   138|        "开始",
+   139|        "停止"
+   140|      ],
+   141|      "stage1_turns": 6,
+   142|      "stage2_new_turns": 0,
+   143|      "total_evidence": 4,
+   144|      "judge": {
+   145|        "score": "PARTIAL",
+   146|        "reason": "The prediction correctly identifies the cause (wrong running posture) and the symptom (knee pain), but it misses/denies the final fact regarding the doctor's recommendation to switch to swimming."
+   147|      }
+   148|    }
+   149|  },
+   150|  "tm2": {
+   151|    "case": {
+   152|      "id": "tm2",
+   153|      "name": "时间区间",
+   154|      "question": "Tom从发现屏幕问题到去天才吧维修，中间隔了多久？",
+   155|      "answer": "大约一周（3月20日发现，4月1日预约，4月8日去修）",
+   156|      "category": "interval"
+   157|    },
+   158|    "improved": {
+   159|      "strategy": "Improved (EntityIdx + TwoStage)",
+   160|      "answer": "12天（从3月20日发现问题到4月1日预约维修）。",
+   161|      "calls": 1,
+   162|      "elapsed_s": 15.1,
+   163|      "query_entities": [
+   164|        "屏幕",
+   165|        "发现",
+   166|        "维修",
+   167|        "天才",
+   168|        "问题",
+   169|        "Tom",
+   170|        "间隔"
+   171|      ],
+   172|      "stage1_turns": 5,
+   173|      "stage2_new_turns": 0,
+   174|      "total_evidence": 4,
+   175|      "judge": {
+   176|        "score": "PARTIAL",
+   177|        "reason": "The prediction correctly identifies the time between finding the problem and booking (March 20 to April 1) as 12 days, but it fails to include the final stage of the process mentioned in the ground truth (the actual repair on April 8)."
+   178|      }
+   179|    }
+   180|  },
+   181|  "tm3": {
+   182|    "case": {
+   183|      "id": "tm3",
+   184|      "name": "跨时间关联",
+   185|      "question": "用户父母是什么时候到的北京？",
+   186|      "answer": "2024年6月20日",
+   187|      "category": "exact_date"
+   188|    },
+   189|    "improved": {
+   190|      "strategy": "Improved (EntityIdx + TwoStage)",
+   191|      "answer": "用户父母于2024年6月20日到达北京。",
+   192|      "calls": 1,
+   193|      "elapsed_s": 7.8,
+   194|      "query_entities": [
+   195|        "用户",
+   196|        "北京",
+   197|        "父母",
+   198|        "时候"
+   199|      ],
+   200|      "stage1_turns": 5,
+   201|      "stage2_new_turns": 0,
+   202|      "total_evidence": 4,
+   203|      "judge": {
+   204|        "score": "CORRECT",
+   205|        "reason": "The prediction includes the exact date specified in the ground truth."
+   206|      }
+   207|    }
+   208|  },
+   209|  "cs1": {
+   210|    "case": {
+   211|      "id": "cs1",
+   212|      "name": "跨会话偏好聚合",
+   213|      "question": "用户最终决定学的技能是什么？为什么选择了这个而不是编程？",
+   214|      "answer": "吉他（重新学），因为觉得音乐类的更适合自己",
+   215|      "category": "preference_aggregation"
+   216|    },
+   217|    "improved": {
+   218|      "strategy": "Improved (EntityIdx + TwoStage)",
+   219|      "answer": "根据提供的对话内容，**无法确定用户最终决定学的技能是什么**。\n\n对话中仅体现了用户的两种意向：\n1. 用户提到了过去学过**吉他**（但已经忘了一些）；\n2. 用户在看到同事学习**Python**后，产生了一些想要尝试的念头。\n\n目前的对话仅处于探讨和考虑阶段，并没有提供用户最终做出决定的信息。",
+   220|      "calls": 1,
+   221|      "elapsed_s": 9.3,
+   222|      "query_entities": [
+   223|        "技能",
+   224|        "用户",
+   225|        "编程",
+   226|        "选择",
+   227|        "决定"
+   228|      ],
+   229|      "stage1_turns": 9,
+   230|      "stage2_new_turns": 0,
+   231|      "total_evidence": 4,
+   232|      "judge": {
+   233|        "score": "WRONG",
+   234|        "reason": "The prediction states that it's impossible to determine the user's final choice, whereas the ground truth explicitly confirms that the user chose 'Guitar'."
+   235|      }
+   236|    }
+   237|  },
+   238|  "cs2": {
+   239|    "case": {
+   240|      "id": "cs2",
+   241|      "name": "跨会话事实合并",
+   242|      "question": "用户目前月租加管理费一共多少？想搬家找新房子，预算上限是多少？",
+   243|      "answer": "目前月租8000+管理费1500=9500；搬家预算总上限1万",
+   244|      "category": "fact_merge"
+   245|    },
+   246|    "improved": {
+   247|      "strategy": "Improved (EntityIdx + TwoStage)",
+   248|      "answer": "根据提供的对话信息，回答如下：\n\n1. **用户目前月租加管理费一共是多少？**\n   用户目前的月租是8000，管理费是1500，合计为**9500**。\n\n2. **想搬家找新房子，预算上限是多少？**\n   对话中**没有提到**用户寻找新房子的预算上限。",
+   249|      "calls": 1,
+   250|      "elapsed_s": 13.1,
+   251|      "query_entities": [
+   252|        "新房子",
+   253|        "预算",
+   254|        "用户",
+   255|        "月租",
+   256|        "一共",
+   257|        "上限",
+   258|        "管理费",
+   259|        "搬家"
+   260|      ],
+   261|      "stage1_turns": 9,
+   262|      "stage2_new_turns": 0,
+   263|      "total_evidence": 4,
+   264|      "judge": {
+   265|        "score": "PARTIAL",
+   266|        "reason": "The prediction correctly identifies the current monthly total cost as 9500, but it fails to mention the moving budget limit of 10,000 which is specified in the ground truth."
+   267|      }
+   268|    }
+   269|  },
+   270|  "cs3": {
+   271|    "case": {
+   272|      "id": "cs3",
+   273|      "name": "跨会话状态追踪",
+   274|      "question": "小明谷歌面试的最终结果是什么？他为此做了哪些准备？",
+   275|      "answer": "拿到L4 offer；刷了200道LeetCode，系统设计准备不足但算法过了",
+   276|      "category": "state_tracking"
+   277|    },
+   278|    "improved": {
+   279|      "strategy": "Improved (EntityIdx + TwoStage)",
+   280|      "answer": "根据提供的对话信息，小明的谷歌面试情况如下：\n\n*   **最终结果：** 小明完成了谷歌面试。其中**算法部分通过了**，但**系统设计部分的表现一般**。\n*   **准备情况：** 他为面试**刷了200道LeetCode题目**，但在面试前**还没有看过系统设计的内容**。",
+   281|      "calls": 1,
+   282|      "elapsed_s": 12.9,
+   283|      "query_entities": [
+   284|        "小明谷",
+   285|        "结果",
+   286|        "准备",
+   287|        "面试"
+   288|      ],
+   289|      "stage1_turns": 9,
+   290|      "stage2_new_turns": 0,
+   291|      "total_evidence": 4,
+   292|      "judge": {
+   293|        "score": "CORRECT",
+   294|        "reason": "The prediction covers all key facts: the quantity of LeetCode problems (200), the success in the algorithm section, and the lack of preparation/average performance in system design."
+   295|      }
+   296|    }
+   297|  }
+   298|}
